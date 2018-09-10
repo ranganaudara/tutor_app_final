@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Student extends StatelessWidget {
+class Tutor extends StatelessWidget {
 
-  Student(this.data);
+  Tutor(this.data);
 
   final data;
 
@@ -13,7 +13,7 @@ class Student extends StatelessWidget {
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Text("Hello, $name!"),
+        title: Text("Trending tutor, $name"),
       ),
       body: Container(
         height: screenSize.height *3/7,

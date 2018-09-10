@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:tutor_app_final/student.dart';
+import 'package:tutor_app_final/login_page.dart';
+import 'package:tutor_app_final/register_page.dart';
+import 'package:tutor_app_final/tutor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,9 +37,6 @@ class _HomePageState extends State<HomePage> {
     this.getData();
   }
 
-  
-
-
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -56,57 +55,71 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[            
             new Container(
               height: screenSize.height*2/9,
-              //color: Colors.grey[200],
-                child:Stack(
+              color: Colors.grey[200],
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  new Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        
-                        Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Welcome to Tutor App!',
-                                style: new TextStyle(fontSize:25.0, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Container(
-                              width: screenSize.width,
-                              child: new Text('Sign in to keep contact with your tutor...', 
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.grey[700],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
+                  
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Welcome to Tutor App!',
+                          style: new TextStyle(fontSize:25.0, fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      Container(
+                        width: screenSize.width,
+                        child: new Text('Sign in to keep contact with your tutor...', 
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.grey[700],
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                
+                  new Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget> [
+                      new RaisedButton(
+                        color: Colors.white,
+                        onPressed:(){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage()
+                            )
+                          );
+                        },
+                        child: new Text('LOGIN', style: TextStyle(color:Colors.blue),)
+                      ),
                       
-                        new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget> [
-                            new RaisedButton(
-                              color: Colors.white,
-                              onPressed:(){},
-                              child: new Text('LOGIN', style: TextStyle(color:Colors.blue),)
-                            ),
-                            
-                            new RaisedButton(
-                              color: Colors.white,
-                              onPressed:(){},
-                              child: new Text('REGISTER',style: TextStyle(color:Colors.blue),)
-                            ),
+                      new RaisedButton(
+                        color: Colors.white,
+                        onPressed:(){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => RegisterPage()
+                            )
+                          );
+                        },
+                        child: new Text('REGISTER',style: TextStyle(color:Colors.blue),)
+                      ),
 
-                          ]
-                        )
-                      ],
-                ),
-              ],
-                ),
+                    ]
+                  )
+                ],
+              ),
             ),
 
+            new Container(
+              padding: EdgeInsets.fromLTRB(18.0, 8.0, 8.0, 8.0),
+              child:new Text("Trending Tutors...", style: TextStyle(fontSize:20.0, fontWeight: FontWeight.bold),)
+            ),
             new Container(
               color: Colors.white,
               height: screenSize.height - screenSize.height * 2/9,
@@ -132,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                         context,
                         new MaterialPageRoute(
                           builder: (BuildContext context) =>
-                            new Student(data[index])
+                            new Tutor(data[index])
                         )
                       );
                     },

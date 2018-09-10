@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
               new TextFormField(
                 keyboardType: TextInputType.emailAddress, // Use email input type for emails.
                 decoration: new InputDecoration(
-                  hintText: 'you@example.com', hintStyle: new TextStyle(fontSize:14.0),
+                  hintText: 'you@example.com',
                   labelText: 'E-mail Address'
                 ),
                 validator: this._validateEmail,
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               new TextFormField(
                 obscureText: true, // Use secure text for passwords.
                 decoration: new InputDecoration(
-                  hintText: 'Password', hintStyle: new TextStyle(fontSize:14.0),
+                  hintText: 'Password',
                   labelText: 'Enter your password'
                 ),
                 validator: this._validatePassword,
@@ -178,14 +178,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   something(int R) {
-    setState(()
-      {
+    setState(() {
         if(R == 0){
           groupValue = 0;
         } else if(R == 1) {
           groupValue = 1;
         }
-      }
-    );
+        });
   }
 }
